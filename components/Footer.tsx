@@ -1,68 +1,84 @@
-import Link from "next/link";
-
 export function Footer() {
   return (
-    <footer className="glass-dark relative text-mint-light">
-      <div className="mx-auto grid max-w-6xl gap-8 px-6 py-14 md:grid-cols-3">
+    <footer className="border-t border-cream-dark/60 bg-cream-dark/30">
+      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-3">
+        {/* Brand */}
         <div>
-          <h3 className="mb-3 font-serif text-xl text-sage-light">
-            Happy Sister
+          <h3 className="mb-4 font-script text-3xl text-charcoal">
+            Happy Sister Beauty Salon
           </h3>
-          <p className="text-sm leading-[1.7] text-sage">
-            Your neighborhood barbershop & beauty salon in Woodside, Queens.
-            Where everyone leaves feeling like family.
-          </p>
-        </div>
-
-        <div>
-          <h4 className="mb-3 font-serif text-lg text-sage-light">
-            Quick Links
-          </h4>
-          <ul className="space-y-2 text-sm">
+          <div className="flex gap-4">
             {[
-              { href: "/services", label: "Services & Pricing" },
-              { href: "/gallery", label: "Gallery" },
-              { href: "/book", label: "Book Appointment" },
-              { href: "/contact", label: "Contact Us" },
-            ].map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-sage transition-colors duration-200 hover:text-sage-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-light"
-                >
-                  {link.label}
-                </Link>
-              </li>
+              { name: "Facebook", href: "#" },
+              { name: "Instagram", href: "#" },
+              { name: "Yelp", href: "#" },
+            ].map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                className="text-sm text-warm-gray transition-colors duration-200 hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral"
+              >
+                {social.name}
+              </a>
             ))}
-          </ul>
+          </div>
         </div>
 
+        {/* Contact */}
         <div>
-          <h4 className="mb-3 font-serif text-lg text-sage-light">
-            Hours & Location
+          <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal-light">
+            Contact
           </h4>
-          <p className="text-sm leading-[1.7] text-sage">
-            39-75 61st St
-            <br />
-            Woodside, NY 11377
-          </p>
-          <p className="mt-2 text-sm text-sage">
-            Open every day: 9:00 AM - 7:30 PM
-          </p>
-          <div className="mt-4 flex gap-4">
-            {["Facebook", "Instagram", "Yelp"].map((name) => (
-              <span
-                key={name}
-                className="cursor-pointer text-sm text-sage transition-colors duration-200 hover:text-sage-light"
+          <div className="space-y-2 text-sm leading-relaxed text-warm-gray">
+            <p>
+              39-75 61st St
+              <br />
+              Woodside, NY 11377
+            </p>
+            <p>
+              Email:{" "}
+              <a
+                href="mailto:hello@happysistersalon.com"
+                className="transition-colors duration-200 hover:text-coral"
               >
-                {name}
-              </span>
-            ))}
+                hello@happysistersalon.com
+              </a>
+            </p>
+            <p>
+              Call:{" "}
+              <a
+                href="tel:7184782388"
+                className="transition-colors duration-200 hover:text-coral"
+              >
+                (718) 478-2388
+              </a>
+            </p>
+          </div>
+        </div>
+
+        {/* Studio Hours */}
+        <div>
+          <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-charcoal-light">
+            Studio Hours
+          </h4>
+          <div className="space-y-2 text-sm text-warm-gray">
+            <div className="flex justify-between">
+              <span>Mon – Fri</span>
+              <span>9am – 7:30pm</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Sat</span>
+              <span>9am – 7:30pm</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Sun</span>
+              <span>10am – 6:30pm</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-sage/20 py-4 text-center text-xs text-sage/60">
+      <div className="border-t border-cream-dark/40 py-4 text-center text-xs text-warm-gray/60">
         &copy; {new Date().getFullYear()} Happy Sister Beauty Salon. All rights
         reserved.
       </div>
