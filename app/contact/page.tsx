@@ -37,9 +37,7 @@ export default function ContactPage() {
               <h2 className="mb-3 font-serif text-xl text-charcoal">Hours</h2>
               <div className="space-y-2 text-sm">
                 {[
-                  { day: "Monday – Friday", hours: "9:00 AM – 7:30 PM" },
-                  { day: "Saturday", hours: "9:00 AM – 7:30 PM" },
-                  { day: "Sunday", hours: "10:00 AM – 6:30 PM" },
+                  { day: "Monday – Sunday", hours: "9:00 AM – 7:30 PM" },
                 ].map((row) => (
                   <div
                     key={row.day}

@@ -33,7 +33,7 @@ export function TopInfoBar() {
         </div>
 
         <span className="font-medium">
-          Mon–Sat 9am – 7:30pm &nbsp;|&nbsp; Sun 10am – 6:30pm
+          Open Daily 9am – 7:30pm
         </span>
 
         <a
