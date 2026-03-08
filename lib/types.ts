@@ -4,7 +4,7 @@ export interface Service {
   description: string;
   price: number;
   duration: number; // minutes
-  category: "barber" | "beauty";
+  category: "cuts" | "color" | "styling" | "treatments";
 }
 
 export interface BookingData {
