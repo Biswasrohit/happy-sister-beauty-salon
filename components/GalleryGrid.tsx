@@ -1,18 +1,73 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-const placeholderImages = [
-  { id: 1, alt: "Salon interior", color: "from-sage/20 to-mint/40" },
-  { id: 2, alt: "Barber station", color: "from-forest/15 to-sage/20" },
-  { id: 3, alt: "Hair styling", color: "from-sage-light/30 to-mint-light" },
-  { id: 4, alt: "Nail art", color: "from-forest-light/15 to-sage/25" },
-  { id: 5, alt: "Beard trim", color: "from-forest/20 to-sage-light/20" },
-  { id: 6, alt: "Hair coloring", color: "from-sage/30 to-mint/30" },
-  { id: 7, alt: "Facial treatment", color: "from-sage-light/25 to-mint-light" },
-  { id: 8, alt: "Salon team", color: "from-forest/10 to-sage/20" },
-  { id: 9, alt: "Happy customer", color: "from-mint/40 to-sage-light/20" },
+const galleryImages = [
+  {
+    id: 1,
+    src: "https://placehold.co/600x700/EDE5D8/7C7C7C?text=Balayage",
+    alt: "Balayage styling",
+    span: "row-span-2",
+    rotate: "-rotate-1",
+  },
+  {
+    id: 2,
+    src: "https://placehold.co/500x500/F8D8CE/7C7C7C?text=Highlights",
+    alt: "Highlight coloring",
+    span: "",
+    rotate: "rotate-1",
+  },
+  {
+    id: 3,
+    src: "https://placehold.co/500x600/FAF6F0/7C7C7C?text=Waves",
+    alt: "Wavy styling",
+    span: "",
+    rotate: "-rotate-[0.5deg]",
+  },
+  {
+    id: 4,
+    src: "https://placehold.co/500x500/EDE5D8/7C7C7C?text=Updo",
+    alt: "Updo styling",
+    span: "",
+    rotate: "rotate-[0.5deg]",
+  },
+  {
+    id: 5,
+    src: "https://placehold.co/600x700/F8D8CE/7C7C7C?text=Color",
+    alt: "Hair color transformation",
+    span: "row-span-2",
+    rotate: "rotate-1",
+  },
+  {
+    id: 6,
+    src: "https://placehold.co/500x500/FAF6F0/7C7C7C?text=Blowout",
+    alt: "Professional blowout",
+    span: "",
+    rotate: "-rotate-1",
+  },
+  {
+    id: 7,
+    src: "https://placehold.co/500x600/EDE5D8/7C7C7C?text=Trim",
+    alt: "Precision trim",
+    span: "",
+    rotate: "rotate-[0.5deg]",
+  },
+  {
+    id: 8,
+    src: "https://placehold.co/500x500/F8D8CE/7C7C7C?text=Ombre",
+    alt: "Ombre treatment",
+    span: "",
+    rotate: "-rotate-[0.5deg]",
+  },
+  {
+    id: 9,
+    src: "https://placehold.co/500x500/FAF6F0/7C7C7C?text=Style",
+    alt: "Salon styling",
+    span: "",
+    rotate: "rotate-1",
+  },
 ];
 
 export function GalleryGrid() {
@@ -20,8 +75,8 @@ export function GalleryGrid() {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-        {placeholderImages.map((img, i) => (
+      <div className="grid auto-rows-[200px] grid-cols-2 gap-3 md:auto-rows-[220px] md:grid-cols-3 md:gap-4">
+        {galleryImages.map((img, i) => (
           <motion.button
             key={img.id}
             initial={{ opacity: 0, y: 24 }}
@@ -32,34 +87,41 @@ export function GalleryGrid() {
               delay: i * 0.06,
               ease: [0.22, 1, 0.36, 1],
             }}
-            whileHover={{ y: -6, scale: 1.02 }}
+            whileHover={{ y: -4, scale: 1.02 }}
             onClick={() => setLightboxIndex(i)}
-            className="glass-card group relative aspect-square overflow-hidden rounded-2xl"
+            className={`group relative overflow-hidden rounded-xl ${img.span} ${img.rotate} transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(232,116,97,0.15)]`}
           >
-            <div
-              className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${img.color}`}
-            >
-              <div className="text-center">
-                <svg
-                  className="mx-auto mb-2 h-8 w-8 text-sage"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                <span className="text-xs text-sage">{img.alt}</span>
-              </div>
-            </div>
+            <Image
+              src={img.src}
+              alt={img.alt}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 50vw, 33vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
           </motion.button>
         ))}
       </div>
 
+      {/* Featured large image */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="relative mt-6 h-[300px] overflow-hidden rounded-xl md:h-[400px]"
+      >
+        <Image
+          src="/placeholder/hero.png"
+          alt="Happy Sister Beauty Salon interior"
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/30 to-transparent" />
+      </motion.div>
+
+      {/* Lightbox */}
       <AnimatePresence>
         {lightboxIndex !== null && (
           <motion.div
@@ -68,7 +130,10 @@ export function GalleryGrid() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            style={{ background: "rgba(27, 67, 50, 0.85)", backdropFilter: "blur(12px)" }}
+            style={{
+              background: "rgba(26, 26, 26, 0.9)",
+              backdropFilter: "blur(12px)",
+            }}
             onClick={() => setLightboxIndex(null)}
           >
             <button
@@ -85,7 +150,7 @@ export function GalleryGrid() {
                 e.stopPropagation();
                 setLightboxIndex(
                   lightboxIndex === 0
-                    ? placeholderImages.length - 1
+                    ? galleryImages.length - 1
                     : lightboxIndex - 1
                 );
               }}
@@ -100,27 +165,16 @@ export function GalleryGrid() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className={`glass-card aspect-square w-full max-w-lg rounded-2xl bg-gradient-to-br ${placeholderImages[lightboxIndex].color} flex items-center justify-center`}
+              className="relative aspect-square w-full max-w-lg overflow-hidden rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="text-center">
-                <svg
-                  className="mx-auto mb-3 h-16 w-16 text-sage"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                <span className="text-sm text-sage">
-                  {placeholderImages[lightboxIndex].alt}
-                </span>
-              </div>
+              <Image
+                src={galleryImages[lightboxIndex].src}
+                alt={galleryImages[lightboxIndex].alt}
+                fill
+                className="object-cover"
+                sizes="512px"
+              />
             </motion.div>
 
             <button
@@ -128,7 +182,7 @@ export function GalleryGrid() {
               onClick={(e) => {
                 e.stopPropagation();
                 setLightboxIndex(
-                  lightboxIndex === placeholderImages.length - 1
+                  lightboxIndex === galleryImages.length - 1
                     ? 0
                     : lightboxIndex + 1
                 );
