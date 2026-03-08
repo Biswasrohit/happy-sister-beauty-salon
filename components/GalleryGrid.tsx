@@ -7,63 +7,63 @@ import { motion, AnimatePresence } from "framer-motion";
 const galleryImages = [
   {
     id: 1,
-    src: "https://placehold.co/600x700/EDE5D8/7C7C7C?text=Balayage",
+    src: "https://placehold.co/600x700/D4A989/FFFFFF?text=Balayage&font=playfair-display",
     alt: "Balayage styling",
     span: "row-span-2",
     rotate: "-rotate-1",
   },
   {
     id: 2,
-    src: "https://placehold.co/500x500/F8D8CE/7C7C7C?text=Highlights",
+    src: "https://placehold.co/500x500/C9917A/FFFFFF?text=Highlights&font=playfair-display",
     alt: "Highlight coloring",
     span: "",
     rotate: "rotate-1",
   },
   {
     id: 3,
-    src: "https://placehold.co/500x600/FAF6F0/7C7C7C?text=Waves",
+    src: "https://placehold.co/500x600/B8A090/FFFFFF?text=Waves&font=playfair-display",
     alt: "Wavy styling",
     span: "",
     rotate: "-rotate-[0.5deg]",
   },
   {
     id: 4,
-    src: "https://placehold.co/500x500/EDE5D8/7C7C7C?text=Updo",
+    src: "https://placehold.co/500x500/D4A989/FFFFFF?text=Updo&font=playfair-display",
     alt: "Updo styling",
     span: "",
     rotate: "rotate-[0.5deg]",
   },
   {
     id: 5,
-    src: "https://placehold.co/600x700/F8D8CE/7C7C7C?text=Color",
+    src: "https://placehold.co/600x700/C9917A/FFFFFF?text=Color&font=playfair-display",
     alt: "Hair color transformation",
     span: "row-span-2",
     rotate: "rotate-1",
   },
   {
     id: 6,
-    src: "https://placehold.co/500x500/FAF6F0/7C7C7C?text=Blowout",
+    src: "https://placehold.co/500x500/B8A090/FFFFFF?text=Blowout&font=playfair-display",
     alt: "Professional blowout",
     span: "",
     rotate: "-rotate-1",
   },
   {
     id: 7,
-    src: "https://placehold.co/500x600/EDE5D8/7C7C7C?text=Trim",
+    src: "https://placehold.co/500x600/D4A989/FFFFFF?text=Trim&font=playfair-display",
     alt: "Precision trim",
     span: "",
     rotate: "rotate-[0.5deg]",
   },
   {
     id: 8,
-    src: "https://placehold.co/500x500/F8D8CE/7C7C7C?text=Ombre",
+    src: "https://placehold.co/500x500/C9917A/FFFFFF?text=Ombre&font=playfair-display",
     alt: "Ombre treatment",
     span: "",
     rotate: "-rotate-[0.5deg]",
   },
   {
     id: 9,
-    src: "https://placehold.co/500x500/FAF6F0/7C7C7C?text=Style",
+    src: "https://placehold.co/500x500/B8A090/FFFFFF?text=Style&font=playfair-display",
     alt: "Salon styling",
     span: "",
     rotate: "rotate-1",
@@ -85,20 +85,19 @@ export function GalleryGrid() {
             transition={{
               duration: 0.5,
               delay: i * 0.06,
-              ease: [0.22, 1, 0.36, 1],
+              ease: [0.22, 1, 0.36, 1] as const,
             }}
             whileHover={{ y: -4, scale: 1.02 }}
             onClick={() => setLightboxIndex(i)}
-            className={`group relative overflow-hidden rounded-xl ${img.span} ${img.rotate} transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(232,116,97,0.15)]`}
+            className={`group overflow-hidden rounded-xl ${img.span} ${img.rotate} transition-shadow duration-300 hover:shadow-[0_8px_32px_rgba(232,116,97,0.15)]`}
           >
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={img.src}
               alt={img.alt}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 768px) 50vw, 33vw"
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
           </motion.button>
         ))}
       </div>
@@ -108,8 +107,8 @@ export function GalleryGrid() {
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="relative mt-6 h-[300px] overflow-hidden rounded-xl md:h-[400px]"
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+        className="relative mt-6 h-75 overflow-hidden rounded-xl md:h-100"
       >
         <Image
           src="/placeholder/hero.png"
@@ -118,7 +117,7 @@ export function GalleryGrid() {
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/30 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-charcoal/30 to-transparent" />
       </motion.div>
 
       {/* Lightbox */}
@@ -165,15 +164,14 @@ export function GalleryGrid() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="relative aspect-square w-full max-w-lg overflow-hidden rounded-xl"
+              className="aspect-square w-full max-w-lg overflow-hidden rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={galleryImages[lightboxIndex].src}
                 alt={galleryImages[lightboxIndex].alt}
-                fill
-                className="object-cover"
-                sizes="512px"
+                className="h-full w-full object-cover"
               />
             </motion.div>
 
