@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookingCalendar } from "./BookingCalendar";
-import { services } from "@/lib/services";
+import { services, serviceCategories } from "@/lib/services";
 import type { BookingData } from "@/lib/types";
 
 const timeSlots: string[] = [];
@@ -67,16 +67,16 @@ export function BookingForm() {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ type: "spring", stiffness: 300, damping: 28 }}
-        className="glass-card rounded-2xl p-8 text-center"
+        className="surface-card rounded-2xl p-8 text-center"
       >
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 400, damping: 15, delay: 0.2 }}
-          className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-forest/10"
+          className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-coral/10"
         >
           <svg
-            className="h-8 w-8 text-forest"
+            className="h-8 w-8 text-coral"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -95,7 +95,7 @@ export function BookingForm() {
         <p className="mb-6 text-warm-gray">
           Thank you, {booking.name}! Here are your appointment details:
         </p>
-        <div className="glass-green mx-auto max-w-sm space-y-2 rounded-xl p-6 text-left text-sm">
+        <div className="surface-blush mx-auto max-w-sm space-y-2 rounded-xl p-6 text-left text-sm">
           <p>
             <span className="font-semibold text-charcoal">Service:</span>{" "}
             {selectedService?.name}
@@ -129,7 +129,7 @@ export function BookingForm() {
             });
             setStep("date");
           }}
-          className="mt-6 rounded-full bg-forest px-6 py-3 text-sm font-semibold text-white shadow-[0_2px_12px_rgba(27,67,50,0.25)] transition-shadow duration-200 hover:shadow-[0_4px_20px_rgba(27,67,50,0.35)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest active:scale-[0.97]"
+          className="mt-6 rounded-full bg-coral px-6 py-3 text-sm font-semibold text-white shadow-[0_2px_12px_rgba(232,116,97,0.25)] transition-shadow duration-200 hover:shadow-[0_4px_20px_rgba(232,116,97,0.35)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral active:scale-[0.97]"
         >
           Book Another Appointment
         </button>
@@ -138,7 +138,7 @@ export function BookingForm() {
   }
 
   return (
-    <div className="glass-card rounded-2xl p-6 md:p-8">
+    <div className="surface-card rounded-2xl p-6 md:p-8">
       {/* Progress steps */}
       <div className="mb-8 flex items-center justify-center gap-2">
         {(["date", "time", "details"] as const).map((s, i) => (
@@ -147,15 +147,15 @@ export function BookingForm() {
               animate={{
                 backgroundColor:
                   step === s
-                    ? "#1B4332"
+                    ? "#E87461"
                     : ["date", "time", "details"].indexOf(step) > i
-                      ? "rgba(27,67,50,0.15)"
-                      : "#F0EDE5",
+                      ? "rgba(232,116,97,0.15)"
+                      : "#EDE5D8",
                 color:
                   step === s
-                    ? "#FEFCF6"
+                    ? "#FFFAF5"
                     : ["date", "time", "details"].indexOf(step) > i
-                      ? "#1B4332"
+                      ? "#E87461"
                       : "#7C7C7C",
               }}
               transition={{ type: "spring", stiffness: 300, damping: 24 }}
@@ -196,7 +196,7 @@ export function BookingForm() {
           >
             <button
               onClick={() => setStep("date")}
-              className="mb-4 text-sm text-forest hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+              className="mb-4 text-sm text-coral hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral"
             >
               &larr; Change date
             </button>
@@ -213,10 +213,10 @@ export function BookingForm() {
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}
                   onClick={() => handleTimeSelect(time)}
-                  className={`rounded-xl border px-3 py-2.5 text-sm focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-forest ${
+                  className={`rounded-xl border px-3 py-2.5 text-sm focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-coral ${
                     booking.time === time
-                      ? "border-forest bg-forest text-white shadow-[0_2px_8px_rgba(27,67,50,0.25)]"
-                      : "border-white/40 bg-white/40 text-charcoal hover:border-sage hover:bg-mint/30"
+                      ? "border-coral bg-coral text-white shadow-[0_2px_8px_rgba(232,116,97,0.25)]"
+                      : "border-cream-dark/60 bg-warm-white text-charcoal hover:border-coral-light hover:bg-blush/30"
                   }`}
                 >
                   {time}
@@ -237,7 +237,7 @@ export function BookingForm() {
           >
             <button
               onClick={() => setStep("time")}
-              className="mb-4 text-sm text-forest hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+              className="mb-4 text-sm text-coral hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral"
             >
               &larr; Change time
             </button>
@@ -259,27 +259,20 @@ export function BookingForm() {
                   onChange={(e) =>
                     setBooking({ ...booking, serviceId: e.target.value })
                   }
-                  className="w-full rounded-xl border border-white/40 bg-white/50 px-4 py-3 text-sm text-charcoal outline-none backdrop-blur-sm focus:border-forest focus:ring-1 focus:ring-forest"
+                  className="w-full rounded-xl border border-cream-dark/60 bg-warm-white px-4 py-3 text-sm text-charcoal outline-none focus:border-coral focus:ring-1 focus:ring-coral"
                 >
                   <option value="">Choose a service...</option>
-                  <optgroup label="Barber">
-                    {services
-                      .filter((s) => s.category === "barber")
-                      .map((s) => (
-                        <option key={s.id} value={s.id}>
-                          {s.name} - ${s.price} ({s.duration} min)
-                        </option>
-                      ))}
-                  </optgroup>
-                  <optgroup label="Beauty">
-                    {services
-                      .filter((s) => s.category === "beauty")
-                      .map((s) => (
-                        <option key={s.id} value={s.id}>
-                          {s.name} - ${s.price} ({s.duration} min)
-                        </option>
-                      ))}
-                  </optgroup>
+                  {serviceCategories.map((cat) => (
+                    <optgroup key={cat.id} label={cat.label}>
+                      {services
+                        .filter((s) => s.category === cat.id)
+                        .map((s) => (
+                          <option key={s.id} value={s.id}>
+                            {s.name} - ${s.price} ({s.duration} min)
+                          </option>
+                        ))}
+                    </optgroup>
+                  ))}
                 </select>
               </div>
 
@@ -303,7 +296,7 @@ export function BookingForm() {
                     onChange={(e) =>
                       setBooking({ ...booking, [input.field]: e.target.value })
                     }
-                    className="w-full rounded-xl border border-white/40 bg-white/50 px-4 py-3 text-sm text-charcoal outline-none backdrop-blur-sm focus:border-forest focus:ring-1 focus:ring-forest"
+                    className="w-full rounded-xl border border-cream-dark/60 bg-warm-white px-4 py-3 text-sm text-charcoal outline-none focus:border-coral focus:ring-1 focus:ring-coral"
                     placeholder={input.placeholder}
                   />
                 </div>
@@ -313,7 +306,7 @@ export function BookingForm() {
                 type="submit"
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full rounded-full bg-forest py-3.5 text-sm font-semibold text-white shadow-[0_2px_12px_rgba(27,67,50,0.25)] transition-shadow duration-200 hover:shadow-[0_4px_20px_rgba(27,67,50,0.35)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest"
+                className="w-full rounded-full bg-coral py-3.5 text-sm font-semibold text-white shadow-[0_2px_12px_rgba(232,116,97,0.25)] transition-shadow duration-200 hover:shadow-[0_4px_20px_rgba(232,116,97,0.35)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral"
               >
                 Confirm Booking
               </motion.button>

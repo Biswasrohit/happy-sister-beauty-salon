@@ -101,14 +101,14 @@ function CalendarMonth({
               whileHover={!isPast ? { scale: 1.1 } : undefined}
               whileTap={!isPast ? { scale: 0.95 } : undefined}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
-              className={`rounded-lg py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-forest ${
+              className={`rounded-lg py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-coral ${
                 isPast
                   ? "cursor-not-allowed text-cream-dark"
                   : isSelected
-                    ? "bg-forest font-semibold text-white shadow-[0_2px_8px_rgba(27,67,50,0.3)]"
+                    ? "bg-coral font-semibold text-white shadow-[0_2px_8px_rgba(232,116,97,0.3)]"
                     : isToday
-                      ? "border border-forest bg-forest/8 font-semibold text-forest"
-                      : "text-charcoal hover:bg-mint/50"
+                      ? "border border-coral bg-coral/8 font-semibold text-coral"
+                      : "text-charcoal hover:bg-blush/50"
               }`}
             >
               {day}

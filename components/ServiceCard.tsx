@@ -20,18 +20,18 @@ export function ServiceCard({ service, index = 0 }: ServiceCardProps) {
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{ y: -4 }}
-      className="glass-card group rounded-2xl p-6 transition-shadow duration-200 hover:shadow-[0_8px_32px_rgba(27,67,50,0.1)]"
+      className="surface-card group rounded-2xl p-6 transition-shadow duration-200 hover:shadow-[0_8px_32px_rgba(232,116,97,0.1)]"
     >
       <div className="mb-3 flex items-start justify-between">
         <h3 className="font-serif text-xl text-charcoal">{service.name}</h3>
-        <span className="whitespace-nowrap rounded-full bg-forest/8 px-3 py-1 font-serif text-lg text-forest">
+        <span className="whitespace-nowrap rounded-full bg-coral/8 px-3 py-1 font-serif text-lg text-coral">
           ${service.price}
         </span>
       </div>
       <p className="mb-3 text-sm leading-[1.7] text-warm-gray">
         {service.description}
       </p>
-      <p className="text-xs text-sage">{service.duration} min</p>
+      <p className="text-xs text-warm-gray/60">{service.duration} min</p>
     </motion.div>
   );
 }
