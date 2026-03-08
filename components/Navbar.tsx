@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TopInfoBar } from "./TopInfoBar";
@@ -22,9 +23,16 @@ export function Navbar() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <Link
             href="/"
-            className="font-script text-3xl text-charcoal transition-colors duration-200 hover:text-coral"
+            className="transition-opacity duration-200 hover:opacity-80"
           >
-            Happy Sister
+            <Image
+              src="/placeholder/Logo.png"
+              alt="Happy Sister Beauty Salon"
+              width={180}
+              height={48}
+              priority
+              className="h-10 w-auto md:h-12"
+            />
           </Link>
 
           <div className="hidden items-center gap-10 md:flex">

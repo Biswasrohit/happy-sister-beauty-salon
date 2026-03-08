@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   title: "Happy Sister Beauty Salon | Woodside, NY",
   description:
     "Your neighborhood barbershop & beauty salon in Woodside, Queens. Haircuts, fades, styling, coloring, nails, facials & more.",
+  icons: {
+    icon: "/placeholder/favicon.png",
+  },
 };
 
 export default function RootLayout({
