@@ -90,31 +90,26 @@ export function Hero() {
 
             {/* Right: brand intro */}
             <div className="w-full text-center md:w-1/2 md:text-left">
-              <motion.div
+              <motion.p
                 custom={0.2}
                 initial="hidden"
                 animate="visible"
                 variants={fadeUp}
-                className="mb-6"
+                className="mb-2 font-script text-4xl text-coral md:text-5xl"
               >
-                <Image
-                  src="/placeholder/Logo.png"
-                  alt="Happy Sister Beauty Salon"
-                  width={360}
-                  height={96}
-                  priority
-                  className="mx-auto h-auto w-56 md:mx-0 md:w-64 lg:w-72"
-                />
-              </motion.div>
-              <motion.p
+                Experience
+              </motion.p>
+              <motion.h1
                 custom={0.35}
                 initial="hidden"
                 animate="visible"
                 variants={fadeUp}
-                className="mb-4 font-script text-3xl text-coral md:text-4xl"
+                className="mb-4 font-serif text-4xl font-light tracking-[-0.02em] text-charcoal md:text-5xl lg:text-6xl"
               >
-                Experience Beauty
-              </motion.p>
+                Happy Sister
+                <br />
+                Beauty Salon
+              </motion.h1>
               <motion.p
                 custom={0.5}
                 initial="hidden"
