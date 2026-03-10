@@ -25,7 +25,11 @@ export function ServiceCard({ service, index = 0 }: ServiceCardProps) {
       <div className="mb-3 flex items-start justify-between">
         <h3 className="font-serif text-xl text-charcoal">{service.name}</h3>
         <span className="whitespace-nowrap rounded-full bg-coral/8 px-3 py-1 font-serif text-lg text-coral">
-          ${service.price}
+          {service.priceNote === "Special"
+            ? "Special"
+            : service.priceMax
+              ? `$${service.price} – $${service.priceMax}`
+              : `$${service.price}`}
         </span>
       </div>
       <p className="mb-3 text-sm leading-[1.7] text-warm-gray">

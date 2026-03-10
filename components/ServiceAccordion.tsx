@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import type { Service } from "@/lib/types";
+import { calLinkForService, SERVICE_CAL_SLUGS } from "@/lib/cal-config";
+import { BookNowButton } from "./BookNowButton";
 
 interface ServiceAccordionProps {
   readonly categoryLabel: string;
@@ -64,14 +67,36 @@ export function ServiceAccordion({
                       {service.name}
                     </h4>
                     <span className="shrink-0 font-serif text-lg text-charcoal-light">
-                      {service.price >= 200
-                        ? `$${service.price}+`
-                        : `$${service.price}`}
+                      {service.priceNote === "Special"
+                        ? "Special"
+                        : service.priceMax
+                          ? `$${service.price} – $${service.priceMax}`
+                          : `$${service.price}`}
                     </span>
                   </div>
-                  <p className="mt-1 text-sm leading-[1.7] text-warm-gray">
-                    {service.description}
+                  <p className="mt-1 text-xs text-warm-gray/60">
+                    ~{service.duration} min
                   </p>
+                  <div className="mt-2 flex items-center gap-3">
+                    <p className="flex-1 text-sm leading-[1.7] text-warm-gray">
+                      {service.description}
+                    </p>
+                    {SERVICE_CAL_SLUGS[service.id] ? (
+                      <BookNowButton
+                        calLink={calLinkForService(service.id)}
+                        className="shrink-0 border border-coral px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-coral transition-colors duration-200 hover:bg-coral hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral active:scale-[0.97]"
+                      >
+                        Book
+                      </BookNowButton>
+                    ) : (
+                      <Link
+                        href="/book"
+                        className="shrink-0 border border-coral px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-coral transition-colors duration-200 hover:bg-coral hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral active:scale-[0.97]"
+                      >
+                        Book
+                      </Link>
+                    )}
+                  </div>
                 </motion.div>
               ))}
             </div>
