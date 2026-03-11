@@ -197,12 +197,14 @@ export function Hero() {
               }}
             >
               <div className="flex flex-col items-center gap-4 sm:flex-row">
+                {/* Hidden: salon handles bookings in person
                 <Link
                   href="/book"
                   className="inline-block bg-coral px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-white transition-opacity duration-200 hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-[0.97]"
                 >
                   Book Now
                 </Link>
+                */}
                 <Link
                   href="/services"
                   className="inline-block border-2 border-white px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-white transition-colors duration-200 hover:bg-white hover:text-charcoal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-[0.97]"

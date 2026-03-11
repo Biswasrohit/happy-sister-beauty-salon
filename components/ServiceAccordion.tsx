@@ -77,10 +77,11 @@ export function ServiceAccordion({
                   <p className="mt-1 text-xs text-warm-gray/60">
                     ~{service.duration} min
                   </p>
-                  <div className="mt-2 flex items-center gap-3">
-                    <p className="flex-1 text-sm leading-[1.7] text-warm-gray">
+                  <div className="mt-2">
+                    <p className="text-sm leading-[1.7] text-warm-gray">
                       {service.description}
                     </p>
+                    {/* Hidden: salon handles bookings in person
                     {SERVICE_CAL_SLUGS[service.id] ? (
                       <BookNowButton
                         calLink={calLinkForService(service.id)}
@@ -96,6 +97,7 @@ export function ServiceAccordion({
                         Book
                       </Link>
                     )}
+                    */}
                   </div>
                 </motion.div>
               ))}

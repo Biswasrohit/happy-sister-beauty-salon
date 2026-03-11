@@ -9,7 +9,7 @@ import { TopInfoBar } from "./TopInfoBar";
 const links = [
   { href: "/services", label: "Services" },
   { href: "/gallery", label: "Gallery" },
-  { href: "/book", label: "Book" },
+  // { href: "/book", label: "Book" }, // Hidden: salon handles bookings in person
   { href: "/contact", label: "Contact" },
 ];
 
